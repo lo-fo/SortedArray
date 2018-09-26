@@ -19,9 +19,19 @@ class SortedArrayTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testInitializingWithUnsortedArray() { // change test by using a type that isn't comparable ? on use it as if it wasnt comparable
+        let unsortedArray: Array<Int> = [1, 2, 4, 1, 2, 10]
+        let expected: Array<Int> = unsortedArray.sorted()
+        let tested = SortedArray<Int>(of: unsortedArray, comparator: <)
+        XCTAssertTrue(tested == expected)
+    }
+
+    func testInsertingElement() {
+        let unsortedArray: Array<Int> = [1, 2, 4, 1, 2, 10]
+        let expected: Array<Int> = (unsortedArray + [5]).sorted()
+        var tested = SortedArray<Int>(of: unsortedArray, comparator: <)
+        tested.insert(5)
+        XCTAssertTrue(tested == expected)
     }
 
     func testPerformanceExample() {
@@ -30,5 +40,4 @@ class SortedArrayTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }
